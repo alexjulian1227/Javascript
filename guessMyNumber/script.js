@@ -6,11 +6,10 @@ let score = document.querySelector(".score");
 let guess = document.querySelector(".guess");
 
 //generate random number
-// let generateNumber = Math.trunc(Math.random() * 20 + 1);
 let baseScore = 20;
 let highscore = 0;
 
-//dont repeat yourself creating reusable functions
+//Refactor: dont repeat yourself creating reusable functions
 let generateRandomNumber = () => Number(Math.trunc(Math.random() * 20 + 1));
 let generateNumber = generateRandomNumber();
 
@@ -56,9 +55,5 @@ document.querySelector(".again").addEventListener("click", function () {
   score.textContent = baseScore;
   document.querySelector("body").style.backgroundColor = "#222";
   guess.value = "";
+  message.textContent = "Start guessing...";
 });
-
-//for testing only
-// number.textContent = generateNumber;
-
-//main
