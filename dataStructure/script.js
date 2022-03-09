@@ -138,19 +138,59 @@ const game = {
     team2: 6.5,
   },
 };
+//map like objects use key and value
+//map keys can have any type unlike objects that keys can only be strings
+
+const rest = new Map();
+rest.set("name", "Classico Italiano");
+rest.set(1, "Firenze, Italy");
+rest.set(2, "Lisbon, Portugal");
+rest
+  .set("categories", ["Italian", "Pizzeria", "Vegetarian", "Organic"])
+  .set("open", 11)
+  .set("close", 23)
+  .set(true, "We are open")
+  .set(false, "We are close");
+
+console.log(rest.get("name"));
+console.log(rest.get(true));
+
+console.log(rest);
+//set iterables with NO DUPLICATES
+//no order/index like arrays
+// const orderSet = new Set(["Pasta", "Pizza", "Pizza", "Risotto", "Pasta"]);
+
+// console.log(orderSet);
+// console.log(new Set("Jonas"));
+
+// console.log(orderSet.size);
+// console.log(orderSet.has("Pizza"));
+// console.log(orderSet.has("Bread"));
+// orderSet.add("Garlic Bread");
+// orderSet.add("Garlic Bread");
+
+// orderSet.delete("Risotto");
+
+// for (const order of orderSet) console.log(order);
+
+// const staff = ["Waiter", "Chef", "Waiter", "Manager", "Chef", "Waiter"];
+// const staffSet = [...new Set(staff)]; //easily converting set to array using spread operator to remove duplicates
+// console.log(staffSet);
+
+// console.log(new Set("jonasschmedtmann").size);
 // Odd of victory Bayern Munich: 1.33
-const odds = Object.entries(game.odds);
+// const odds = Object.entries(game.odds);
 
-for (const [i, e] of odds) {
-  const modStr = `${game[i] ? `Odd of victory ${game[i]}` : `Odd of draw`}`;
-  console.log(`${modStr}: ${e}`);
-}
+// for (const [i, e] of odds) {
+//   const modStr = `${game[i] ? `Odd of victory ${game[i]}` : `Odd of draw`}`;
+//   console.log(`${modStr}: ${e}`);
+// }
 
-const scorers = {};
-for (const player of game.scored) {
-  scorers[player] ? scorers[player]++ : (scorers[player] = 1);
-}
-console.log(scorers);
+// const scorers = {};
+// for (const player of game.scored) {
+//   scorers[player] ? scorers[player]++ : (scorers[player] = 1);
+// }
+// console.log(scorers);
 // const odds = Object.values(game.odds);
 // let average = 0;
 // for (const odd of odds) {
