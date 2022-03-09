@@ -21,7 +21,7 @@ const openingHours = {
     close: 24,
   },
 };
-console.log(openingHours);
+// console.log(openingHours);
 
 const restaurant = {
   name: "Classico Italiano",
@@ -55,12 +55,59 @@ const restaurant = {
     console.log(otherIngredients);
   },
 };
-//optional chaining
-if (restaurant.openingHours.mon) {
-  console.log(restaurant.openingHours.mon.open);
-}
+//looping objects, keys, values
 
+//property names
+// const properties = Object.keys(openingHours);
+// console.log(properties);
+// let openStr = `The restaurant will be open ${properties.length}x a week`;
+
+// for (const day of properties) {
+//   openStr += `${day}.`;
+// }
+
+// console.log(openStr);
+
+// //property values
+// const values = Object.values(openingHours);
+// console.log(values);
+
+// //entire object
+// const entries = Object.entries(openingHours);
+// // console.log(entries);
+
+// for (const [key, { open, close }] of entries)
+//   console.log(`On ${key} we open at ${open} and close at ${close}`);
+
+//optional chaining
+// if (restaurant.openingHours.mon) {
+//   console.log(restaurant.openingHours.mon.open);
+// }
+
+// //with optional chaining
+// console.log(restaurant.openingHours.mon?.open); //after the operator ?. if (mon) exist in openingHours it can proceed with (open) and will return undefined to avoid error
+// console.log(restaurant.openingHours?.mon?.open); //good for avoiding errors
+
+// const days = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+
+// for (const day of days) {
+//   const open = restaurant.openingHours[day]?.open ?? "closed";
+//   console.log(`On day: ${day}, we open at ${open}`);
+// }
+
+// //methods optional chaining
+// console.log(restaurant.order?.(0, 1) ?? "Method does not exist");
+// console.log(restaurant.orderRissoto?.(0, 1) ?? "Method does not exist");
+// //optional chaining for array
+// const users = [
+//   {
+//     name: "Jonas",
+//     email: "hello@jonas.io",
+//   },
+// ];
+// console.log(users[0]?.name ?? "User array empty");
 //enhanced object literals
+//calling other objects outside and using it as a key inside the another object
 
 //for of loop
 // const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
@@ -137,6 +184,28 @@ const game = {
     team2: 6.5,
   },
 };
+for (const [i, e] of game.scored.entries()) console.log(`Goal ${i + 1}: ${e}`);
+
+// Loop over the game.scored array and print each player name to the console,
+// along with the goal number (Example: "Goal 1: Lewandowski")
+// 2. Use a loop to calculate the average odd and log it to the console (We already
+// studied how to calculate averages, you can go check if you don't remember)
+// 3. Print the 3 odds to the console, but in a nice formatted way, exactly like this:
+// Odd of victory Bayern Munich: 1.33
+// Odd of draw: 3.25
+// Odd of victory Borrussia Dortmund: 6.5
+// Get the team names directly from the game object, don't hardcode them
+// (except for "draw"). Hint: Note how the odds and the game objects have the
+// same property names �
+// 4. Bonus: Create an object called 'scorers' which contains the names of the
+// players who scored as properties, and the number of goals as the value. In this
+// game, it will look like this:
+// {
+//   Gnarby: 1,
+//   Hummels: 1,
+//   Lewandowski: 2
+//  }
+
 // const [players1, players2] = game.players;
 // console.log(players1);
 // for (const [i, e] of players1.entries()) {
