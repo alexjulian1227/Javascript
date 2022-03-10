@@ -55,6 +55,90 @@ const restaurant = {
     console.log(otherIngredients);
   },
 };
+//working with strings
+const airline = "TAP Air Portugal";
+const plane = "A320";
+// console.log(airline.toUpperCase());
+// console.log(airline.toLowerCase());
+const passenger = "jANice";
+console.log(
+  `${passenger.slice(0, 1).toUpperCase()}${passenger.slice(1).toLowerCase()}`
+);
+
+const firstUpper = function (str) {
+  const newStr = `${str.slice(0, 1).toUpperCase()}${str
+    .slice(1)
+    .toLowerCase()}`;
+  return console.log(newStr);
+};
+firstUpper("jANicE");
+firstUpper("aTHONy");
+firstUpper("BiLLY");
+
+const email = "hello@jonas.io";
+const loginEmail = "  Hello@Jonas.io \n";
+
+const lowerEmail = loginEmail.toLowerCase();
+const trimmedEmail = lowerEmail.trim();
+console.log(trimmedEmail);
+
+const normalizedEmail = loginEmail.toLowerCase().trim();
+console.log(normalizedEmail);
+
+//replace
+const priceGB = "288,97£";
+const priceUS = priceGB.replace("£", "$").replace(",", ".");
+console.log(priceUS);
+
+const announcement =
+  "All passengers come to boarding door 23, Boarding door 23!";
+
+console.log(announcement.replace("door", "gate"));
+
+console.log(announcement.replace(/door/g, "gate")); //regular expression
+
+const plane1 = "Airbus A320neo";
+console.log(plane1.includes("A320"));
+console.log(plane1.includes("Boeing"));
+
+console.log(plane1.startsWith("Air"));
+if (plane1.startsWith("Airbus") && plane1.endsWith("neo")) {
+  console.log("Part of the NEW Airbus family");
+}
+
+const checkBaggage = function (items) {
+  const baggage = items.toLowerCase();
+  if (baggage.includes("knife") || baggage.includes("gun")) {
+    console.log("You are not allowed to board the plane.");
+  } else {
+    console.log("Welcome aboard!");
+  }
+};
+
+checkBaggage("I have a laptop, some food and a pocket knife");
+checkBaggage("Socks and camera");
+checkBaggage("Got some snacks and a gun for protection");
+// console.log(airline);
+// console.log(airline.slice(4));
+// console.log(airline.slice(4, 7));
+
+// console.log(airline.slice(0, airline.indexOf(" ")));
+// console.log(airline.slice(airline.lastIndexOf(" ") + 1));
+
+// console.log(airline.slice(-3));
+// console.log(airline.slice(1, -1));
+
+// const checkMiddleSeat = function (seat) {
+//   //B and E are middle seats
+//   const s = seat.slice(-1);
+//   s === "B" || s === "E"
+//     ? console.log("You got middle seat")
+//     : console.log("You got lucky");
+// };
+
+// checkMiddleSeat("11B");
+// checkMiddleSeat("23C");
+// checkMiddleSeat("3E");
 //optional chaining
 // if (restaurant.openingHours && restaurant.openingHours.mon) {
 //   console.log(restaurant.openingHours.mon.open);
@@ -199,14 +283,14 @@ const gameEvents = new Map([
 // const [events] = new Set(gameEvents.entries());
 // console.log([...events]);
 // console.log(typeof events);
-const events = gameEvents.entries();
-console.log(events);
+// const events = gameEvents.entries();
+// console.log(events);
 
-for (const [key, value] of events) {
-  key <= 45
-    ? console.log(`[FIRST HALF] ${key}: ${value}`)
-    : console.log(`[SECOND HALF] ${key}: ${value}`);
-}
+// for (const [key, value] of events) {
+//   key <= 45
+//     ? console.log(`[FIRST HALF] ${key}: ${value}`)
+//     : console.log(`[SECOND HALF] ${key}: ${value}`);
+// }
 //2
 // gameEvents.delete(64);
 // console.log(gameEvents);
