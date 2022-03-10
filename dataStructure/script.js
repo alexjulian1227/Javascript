@@ -56,68 +56,106 @@ const restaurant = {
   },
 };
 //working with strings
-const airline = "TAP Air Portugal";
-const plane = "A320";
-// console.log(airline.toUpperCase());
-// console.log(airline.toLowerCase());
-const passenger = "jANice";
-console.log(
-  `${passenger.slice(0, 1).toUpperCase()}${passenger.slice(1).toLowerCase()}`
-);
+// const airline = "TAP Air Portugal";
+// const plane = "A320";
+// // console.log(airline.toUpperCase());
+// // console.log(airline.toLowerCase());
+// const passenger = "jANice";
+// console.log(
+//   `${passenger.slice(0, 1).toUpperCase()}${passenger.slice(1).toLowerCase()}`
+// );
 
-const firstUpper = function (str) {
-  const newStr = `${str.slice(0, 1).toUpperCase()}${str
-    .slice(1)
-    .toLowerCase()}`;
-  return console.log(newStr);
-};
-firstUpper("jANicE");
-firstUpper("aTHONy");
-firstUpper("BiLLY");
+// const firstUpper = function (str) {
+//   const newStr = `${str.slice(0, 1).toUpperCase()}${str
+//     .slice(1)
+//     .toLowerCase()}`;
+//   return console.log(newStr);
+// };
+// console.log("a+very+nice+string".split("+"));
+// console.log("Jonas Schmedtmann".split(" "));
 
-const email = "hello@jonas.io";
-const loginEmail = "  Hello@Jonas.io \n";
+// const [firstName, lastName] = "JOnas Schmedtmann".split(" ");
 
-const lowerEmail = loginEmail.toLowerCase();
-const trimmedEmail = lowerEmail.trim();
-console.log(trimmedEmail);
+// const newName = ["Mr.", firstName, lastName.toUpperCase()].join(" ");
+// console.log(newName);
 
-const normalizedEmail = loginEmail.toLowerCase().trim();
-console.log(normalizedEmail);
+// const passenger = "jessica ann smith davis";
 
-//replace
-const priceGB = "288,97£";
-const priceUS = priceGB.replace("£", "$").replace(",", ".");
-console.log(priceUS);
+// const capitalize = function (str) {
+//   const names = str.split(" ");
+//   const namesUpper = [];
+//   for (const n of names) {
+//     namesUpper.push(n[0].toUpperCase() + n.slice(1));
+//   }
+//   console.log(namesUpper.join(" "));
+// };
 
-const announcement =
-  "All passengers come to boarding door 23, Boarding door 23!";
+// capitalize(passenger);
+// capitalize("jonas schmedtmann");
 
-console.log(announcement.replace("door", "gate"));
+// const message = "Go to gate 23";
+// console.log(message.padStart(25, "+"));
+//masking cc #
+// const ccNumber = "442243215342";
 
-console.log(announcement.replace(/door/g, "gate")); //regular expression
+// const maskCC = function (str) {
+//   const newStr = str.slice(-4).padStart(12, "*");
+//   return console.log(newStr);
+// };
+// maskCC(ccNumber);
+// maskCC("223112kddssi");
+// maskCC(ccNumber);
 
-const plane1 = "Airbus A320neo";
-console.log(plane1.includes("A320"));
-console.log(plane1.includes("Boeing"));
+const message = "Bad weather... All departures delayed...";
 
-console.log(plane1.startsWith("Air"));
-if (plane1.startsWith("Airbus") && plane1.endsWith("neo")) {
-  console.log("Part of the NEW Airbus family");
-}
+console.log(message.repeat(5));
+// firstUpper("jANicE");
+// firstUpper("aTHONy");
+// firstUpper("BiLLY");
 
-const checkBaggage = function (items) {
-  const baggage = items.toLowerCase();
-  if (baggage.includes("knife") || baggage.includes("gun")) {
-    console.log("You are not allowed to board the plane.");
-  } else {
-    console.log("Welcome aboard!");
-  }
-};
+// const email = "hello@jonas.io";
+// const loginEmail = "  Hello@Jonas.io \n";
 
-checkBaggage("I have a laptop, some food and a pocket knife");
-checkBaggage("Socks and camera");
-checkBaggage("Got some snacks and a gun for protection");
+// const lowerEmail = loginEmail.toLowerCase();
+// const trimmedEmail = lowerEmail.trim();
+// console.log(trimmedEmail);
+
+// const normalizedEmail = loginEmail.toLowerCase().trim();
+// console.log(normalizedEmail);
+
+// //replace
+// const priceGB = "288,97£";
+// const priceUS = priceGB.replace("£", "$").replace(",", ".");
+// console.log(priceUS);
+
+// const announcement =
+//   "All passengers come to boarding door 23, Boarding door 23!";
+
+// console.log(announcement.replace("door", "gate"));
+
+// console.log(announcement.replace(/door/g, "gate")); //regular expression
+
+// const plane1 = "Airbus A320neo";
+// console.log(plane1.includes("A320"));
+// console.log(plane1.includes("Boeing"));
+
+// console.log(plane1.startsWith("Air"));
+// if (plane1.startsWith("Airbus") && plane1.endsWith("neo")) {
+//   console.log("Part of the NEW Airbus family");
+// }
+
+// const checkBaggage = function (items) {
+//   const baggage = items.toLowerCase();
+//   if (baggage.includes("knife") || baggage.includes("gun")) {
+//     console.log("You are not allowed to board the plane.");
+//   } else {
+//     console.log("Welcome aboard!");
+//   }
+// };
+
+// checkBaggage("I have a laptop, some food and a pocket knife");
+// checkBaggage("Socks and camera");
+// checkBaggage("Got some snacks and a gun for protection");
 // console.log(airline);
 // console.log(airline.slice(4));
 // console.log(airline.slice(4, 7));
