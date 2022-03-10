@@ -4,6 +4,49 @@
 const flights =
   "_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30";
 
+for (const flight of flights.split("+")) {
+  const [type, from, to, time] = flight.split(";");
+
+  const output = `${type.startsWith("_Delayed") ? ">>>" : "   "} ${type
+    .replace(/_/g, " ")
+    .trim()} from ${from.slice(0, 3).toUpperCase()} to ${to
+    .slice(0, 3)
+    .toUpperCase()} (${time.replace(":", "h")})`;
+  console.log(output);
+}
+// const flightsArray = flights.split("+");
+// const [first, second, third, fourth] = [...flightsArray];
+// const modifyFirst = first.split(";");
+// const modifySecond = second.split(";");
+// const modifyThird = third.split(";");
+// const modifyFourth = fourth.split(";");
+
+// let newStr1, newStr2, newStr3, newStr4;
+// const fixStr = function (arr) {
+//   for (const [i, e] of arr.entries()) {
+//     if (i === 0) {
+//       newStr1 = arr[i].replace(/_/g, " ").trim();
+//     } else if (i === 1) {
+//       newStr2 = arr[i].slice(0, 3).toUpperCase();
+//     } else if (i === 2) {
+//       newStr3 = arr[i].slice(0, 3).toUpperCase();
+//     } else {
+//       newStr4 = arr[i].replace(":", "h");
+//     }
+//   }
+//   return console.log(`${newStr1} from ${newStr2} to ${newStr3} (${newStr4})`);
+// };
+// fixStr(modifyFirst);
+// fixStr(modifySecond);
+// fixStr(modifyThird);
+// fixStr(modifyFourth);
+
+// console.log(first);
+// console.log(modifyFirst);
+// console.log(second);
+// console.log(third);
+// console.log(fourth);
+
 // Data needed for first part of the section
 const weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
 
@@ -105,10 +148,28 @@ const restaurant = {
 // maskCC(ccNumber);
 // maskCC("223112kddssi");
 // maskCC(ccNumber);
+// document.body.append(document.createElement("textarea"));
+// document.body.append(document.createElement("button"));
 
-const message = "Bad weather... All departures delayed...";
+// document.querySelector("button").addEventListener("click", function () {
+//   const content = document.querySelector("textarea").value;
+//   const contentArray = content.split("\n");
+//   const check = "\u2713";
+//   for (const [i, x] of contentArray.entries()) {
+//     const [first, second] = x.split("_");
 
-console.log(message.repeat(5));
+//     const fLower = first.toLowerCase().trim();
+//     const sLower = second.toLowerCase().trim();
+
+//     const sUpper = sLower.slice(0, 1).toUpperCase() + sLower.slice(1);
+//     const final = fLower + sUpper;
+//     //console.log(`${final} \u2713`);
+//     console.log(`${final} - ${check.repeat(i + 1)}`);
+//   }
+// });
+// const message = "Bad weather... All departures delayed...";
+
+// console.log(message.repeat(5));
 // firstUpper("jANicE");
 // firstUpper("aTHONy");
 // firstUpper("BiLLY");
