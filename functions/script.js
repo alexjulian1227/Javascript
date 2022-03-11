@@ -1,42 +1,90 @@
 "use strict";
 
-const lufthansa = {
-  airline: "Lufthansa",
-  iataCode: "LH",
-  bookings: [],
-  book(flightNum, name) {
-    //es6 way of putting function
-    console.log(
-      `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
-    );
-    this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+const poll = {
+  question: "What is your favourite programming language?",
+  options: ["0: JavaScript", "1: Python", "2: Rust", "3:  C++"],
+  // This generates [0, 0, 0, 0]. More in the next section!
+  answers: new Array(4).fill(0),
+  registerNewAnswer() {
+    alert("What is your favourite programming language");
   },
 };
 
-lufthansa.book("239", "Jonas Schmedthmann");
-lufthansa.book("634", "John Smith");
-console.log(lufthansa);
-const eurowings = {
-  airline: "Eurowings",
-  iataCode: "EW",
-  bookings: [],
-};
+registerNewAnswer();
 
-const book = lufthansa.book; //reusable book
+// const lufthansa = {
+//   airline: "Lufthansa",
+//   iataCode: "LH",
+//   bookings: [],
+//   book(flightNum, name) {
+//     //es6 way of putting function
+//     console.log(
+//       `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
+//     );
+//     this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+//   },
+// };
 
-// book(23, "Sarah Williams"); //this keyword is not usable at the top since its outside the function unless you use call/apply not going to work
-book.call(eurowings, 23, "Sarah Williams"); //if you would like to use another object for the function that's in the other function that using this keyword
-console.log(eurowings);
+// lufthansa.book("239", "Jonas Schmedthmann");
+// lufthansa.book("634", "John Smith");
+// console.log(lufthansa);
+// const eurowings = {
+//   airline: "Eurowings",
+//   iataCode: "EW",
+//   bookings: [],
+// };
 
-book.call(lufthansa, 239, "Mary Cooper");
-console.log(lufthansa);
+// const book = lufthansa.book; //reusable book
 
-//apply method
-const flightData = [511, "George Cooper"];
-book.apply(eurowings, flightData);
-//best method
-book.call(lufthansa, ...flightData);
-console.log(lufthansa);
+// // book(23, "Sarah Williams"); //this keyword is not usable at the top since its outside the function unless you use call/apply not going to work
+// book.call(eurowings, 23, "Sarah Williams"); //if you would like to use another object for the function that's in the other function that using this keyword
+// console.log(eurowings);
+
+// book.call(lufthansa, 239, "Mary Cooper");
+// console.log(lufthansa);
+
+// //apply method
+// const flightData = [511, "George Cooper"];
+// book.apply(eurowings, flightData);
+// //best method
+// book.call(lufthansa, ...flightData);
+// console.log(lufthansa);
+
+// //bind method
+// const bookEW = book.bind(eurowings);
+// const bookLH = book.bind(lufthansa);
+// bookEW(23, "Steven Williams");
+
+// const bookEW23 = book.bind(eurowings, 23); //partial application setting one parameter(flightNum)
+// bookEW23("Jonas Schmedtmann");
+
+// //with event listeners
+// lufthansa.planes = 300;
+// lufthansa.buyPlane = function () {
+//   console.log(this);
+//   this.planes++;
+//   console.log(this.planes);
+// };
+
+// document
+//   .querySelector(".buy")
+//   .addEventListener("click", lufthansa.buyPlane.bind(lufthansa));
+
+//partial application : binding default value for one parameter/should be in order
+
+// const addTax = (rate, value) => value + value * rate;
+// // console.log(addTax(0.1, 200));
+
+// const addVat = addTax.bind(null, 0.23);
+// console.log(addVat(100));
+// const addTax = function (value) {
+//   return function (rate = 0.1) {
+//     console.log(`${value + value * rate}`);
+//   };
+// };
+// const addVat = addTax(200);
+// addVat();
+
 //function calling function
 // const greet = function (greeting) {
 //   return function (name) {
