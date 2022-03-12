@@ -61,6 +61,27 @@ const inputLoanAmount = document.querySelector(".form__input--loan-amount");
 const inputCloseUsername = document.querySelector(".form__input--user");
 const inputClosePin = document.querySelector(".form__input--pin");
 
+const displayMovements = function (movements) {
+  containerMovements.innerHTML = ""; //clearing the old container to prepare the entries
+  movements.forEach(function (mov, i) {
+    const type = mov > 0 ? "deposit" : "widthdrawl";
+
+    const html = `
+      <div class="movements__row">
+          <div class="movements__type movements__type--${type}">${
+      i + 1
+    } ${type}</div>
+          <div class="movements__date">3 days ago</div>
+          <div class="movements__value">${mov}</div>
+      </div>
+  `;
+
+    containerMovements.insertAdjacentHTML("afterbegin", html);
+  });
+};
+
+//global
+displayMovements(account1.movements);
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -140,3 +161,21 @@ const inputClosePin = document.querySelector(".form__input--pin");
 // currenciesUnique.forEach(function (value, _, map) {
 //   console.log(`${value}: ${value}`);
 // });
+
+// const dogsJulia = [9, 16, 6, 8, 3];
+// const dogsKate = [10, 5, 6, 1, 4];
+
+// // log to the console whether it's an adult ("Dog number 1
+// // is an adult, and is 5 years old") or a puppy ("Dog number 2 is still a puppy
+
+// const checkDogs = function (dogsJ, dogsK) {
+//   const dogsJFinal = dogsJ.slice(1, -2);
+//   const allDogs = dogsJFinal.concat(dogsK);
+
+//   allDogs.forEach(function (dog, i) {
+//     const dogAge = dog >= 3 ? "an adult" : "still a puppy";
+//     console.log(`Dog number ${i + 1} is ${dogAge}, and is ${dog} years old.`);
+//   });
+// };
+
+// checkDogs(dogsJulia, dogsKate);
