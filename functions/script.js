@@ -1,10 +1,19 @@
 "use strict";
 
-//
 (function () {
   const header = document.querySelector("h1");
   header.style.color = "red";
+
+  const body = document.querySelector("body");
+  body.addEventListener("click", function () {
+    header.style.color = "blue";
+  });
 })();
+
+document.querySelector(".buy").addEventListener("click", function () {
+  const header = document.querySelector("h1");
+  header.style.color = "red";
+});
 //CLOSURES
 // const secureBooking = function () {
 //   let passengerCount = 0;
