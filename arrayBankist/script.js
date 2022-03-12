@@ -79,9 +79,21 @@ const displayMovements = function (movements) {
     containerMovements.insertAdjacentHTML("afterbegin", html);
   });
 };
+const createUsernames = function (accs) {
+  //create username key/value in accounts obj
+  accs.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLocaleLowerCase()
+      .split(" ")
+      .map((str) => str[0])
+      .join("");
+  });
+};
 
 //global
 displayMovements(account1.movements);
+createUsernames(accounts);
+console.log(accounts);
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -179,3 +191,26 @@ displayMovements(account1.movements);
 // };
 
 // checkDogs(dogsJulia, dogsKate);
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+5020;
+const balance = movements.reduce((acc, cur, i, arr) => acc + cur, 0);
+console.log(balance);
+// const deposit = movements.filter((mov) => mov > 0);
+// console.log(deposit.join("\n"));
+// const eurToUsd = 1.1;
+
+// // const movementsUsd = movements.map(function (val) {
+// //   return val * eurToUsd;
+// // });
+
+// const movementsUsd = movements.map((val) => val * eurToUsd);
+
+// console.log(movementsUsd);
+
+// const showMovements = movements.map((mov, i) => {
+//   const type = mov > 0 ? "deposited $" : "withdrew -$";
+//   return `Movement ${i + 1}: You ${type}${Math.abs(mov)}`;
+// });
+
+// console.log(showMovements);
