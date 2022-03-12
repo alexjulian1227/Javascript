@@ -1,17 +1,94 @@
 "use strict";
 
-const poll = {
-  question: "What is your favourite programming language?",
-  options: ["0: JavaScript", "1: Python", "2: Rust", "3:  C++"],
-  // This generates [0, 0, 0, 0]. More in the next section!
-  answers: new Array(4).fill(0),
-  registerNewAnswer() {
-    alert("What is your favourite programming language");
-  },
-};
+//
+(function () {
+  const header = document.querySelector("h1");
+  header.style.color = "red";
+})();
+//CLOSURES
+// const secureBooking = function () {
+//   let passengerCount = 0;
 
-registerNewAnswer();
+//   return function () {
+//     passengerCount++;
+//     console.log(`${passengerCount} passengers`);
+//   };
+// };
+// const booker = secureBooking();
+// booker();
+// booker();
+// booker();
+// booker();
 
+// let f;
+
+// const g = function () {
+//   const a = 23;
+//   f = function () {
+//     console.log(a * 2);
+//   };
+// };
+
+// const h = function () {
+//   const b = 777;
+//   f = function () {
+//     console.log(b * 2);
+//   };
+// };
+
+// g();
+// h();
+// //
+// f();
+
+// const boardPassenger = function (n, wait) {
+//   const perGroup = n / 3;
+//   setTimeout(function () {
+//     console.log(`We are now boarding all ${n} passengers`);
+//     console.log(`There are 3 groups, each with ${perGroup} passengers`);
+//   }, wait * 1000);
+
+//   console.log(`Will start boarding in ${wait} seconds`);
+// };
+
+// boardPassenger(180, 3);
+//immediately invoked function//one time use function IIEFI
+//data encapsulation //making it private cause the variables inside cannot be called again
+// (function () {
+//   console.log("This will never run again");
+// })(); //wrapping the function with no variable with paren() and adding () at the end
+// (() => console.log("This will never run again2"))();
+// const data1 = [5, 2, 3];
+// const data2 = [1, 5, 3, 9, 6, 1];
+// const poll = {
+//   question: "What is your favourite programming language?",
+//   options: ["0: JavaScript", "1: Python", "2: Rust", "3:  C++"],
+//   // This generates [0, 0, 0, 0]. More in the next section!
+//   answers: new Array(4).fill(0),
+//   registerNewAnswer() {
+//     const userChoice = prompt(`${this.question}\n${this.options.join("\n")}
+//     (Write option number)`);
+
+//     if (userChoice >= 4) {
+//       console.log(`Please choose only 0 - 4`);
+//     } else {
+//       this.answers[userChoice]++;
+//       this.displayResults(this.answers);
+//     }
+//   },
+//   displayResults(type) {
+//     console.log(`Poll is ${type}`);
+//     console.log(`[${[...type]}]`);
+//   },
+// };
+
+// document
+//   .querySelector(".poll")
+//   .addEventListener("click", poll.registerNewAnswer.bind(poll));
+
+// const display = poll.displayResults.bind(poll);
+
+// display(data2);
 // const lufthansa = {
 //   airline: "Lufthansa",
 //   iataCode: "LH",
@@ -46,6 +123,7 @@ registerNewAnswer();
 // //apply method
 // const flightData = [511, "George Cooper"];
 // book.apply(eurowings, flightData);
+
 // //best method
 // book.call(lufthansa, ...flightData);
 // console.log(lufthansa);
