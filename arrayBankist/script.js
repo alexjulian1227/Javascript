@@ -79,6 +79,12 @@ const displayMovements = function (movements) {
     containerMovements.insertAdjacentHTML("afterbegin", html);
   });
 };
+
+const calcDisplayBalance = function (movements) {
+  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `$${balance} EUR`;
+};
+
 const createUsernames = function (accs) {
   //create username key/value in accounts obj
   accs.forEach(function (acc) {
@@ -89,11 +95,17 @@ const createUsernames = function (accs) {
       .join("");
   });
 };
+const login = function () {
+  const loginEntered = inputLoginUsername.textContent;
+  console.log(loginEntered);
+};
+btnLogin.addEventListener("click", login);
 
 //global
-displayMovements(account1.movements);
+// displayMovements(account1.movements);
+// calcDisplayBalance(account1.movements);
 createUsernames(accounts);
-console.log(accounts);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -139,6 +151,13 @@ console.log(accounts);
 //forEach
 // const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
+// const search = movements.find((mov) => mov < 0);
+// console.log(search);
+// console.log(accounts);
+// const typeUsername = prompt("Enter your username");
+// const getUsername = accounts.find((acc) => acc.username === typeUsername);
+
+// console.log(getUsername);
 // // for (const move of movements) {
 // //   if (move > 0) {
 // //     console.log(`You deposited $${move}`);
@@ -191,11 +210,45 @@ console.log(accounts);
 // };
 
 // checkDogs(dogsJulia, dogsKate);
+// const dogAges = [5, 2, 4, 1, 15, 8, 3];
+// const calcAverageHumanAge = dogAges
+//   .map((ages) => {
+//     if (ages <= 2) return 2 * ages;
+//     else return 16 + ages * 4;
+//   })
+//   .filter((ages) => ages > 18)
+//   .reduce((acc, cur, arr) => acc + cur, 0);
+// console.log(calcAverageHumanAge);
+// const getAverage =
+//   calcAverageHumanAge.reduce((acc, cur) => acc + cur) /
+//   calcAverageHumanAge.length;
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-5020;
-const balance = movements.reduce((acc, cur, i, arr) => acc + cur, 0);
-console.log(balance);
+// console.log(`Normal age of adult dogs ${getAverage}`);
+
+// const underAge = calcAverageHumanAge.filter((ages) => ages > 18);
+// console.log(underAge);
+// const averageAge =
+//   underAge.reduce((acc, age) => acc + age, 0) / underAge.length;
+
+// console.log(averageAge);
+//44
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const eurToUsd = 1.1;
+
+// const balanceConvertUSD = movements
+//   .map((mov) => mov * eurToUsd)
+//   .reduce((acc, cur) => acc + cur, 0);
+// console.log(`$${String(balanceConvertUSD).split(".")[0]}`);
+
+// const maxValue = movements.reduce((acc, mov) => {
+//   if (acc > mov) return acc;
+//   else return mov;
+// }, movements[0]);
+
+// console.log(maxValue);
+// 5020;
+// const balance = movements.reduce((acc, cur, i, arr) => acc + cur, 0);
+// console.log(balance);
 // const deposit = movements.filter((mov) => mov > 0);
 // console.log(deposit.join("\n"));
 // const eurToUsd = 1.1;
