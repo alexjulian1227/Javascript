@@ -239,26 +239,28 @@ const dogs = [
   { weight: 32, curFood: 340, owners: ["Michael"] },
 ];
 
-//1
 dogs.forEach(function (arr) {
   const food = Math.trunc(arr.weight ** 0.75 * 28);
-  return (arr.recommendFood = food);
+  arr.recommendFood = food;
 });
 
-const dogSara =
-  dogs[
-    dogs
-      .map((str) => str.owners)
-      .map((str) => str.includes("Sarah"))
-      .findIndex((str) => str === true)
-  ];
+const dogSarah = dogs.find((dog) => dog.owners.includes("Sarah"));
+console.log(dogSarah);
+console.log(
+  `Sarah's dog is eating too ${
+    dogSarah.curFood > dogSarah.recommendFood ? `much` : `little`
+  }`
+);
 
-// console.log(dogs[dogSara]);
-const dogEat = dogSara.weight;
+const ownersEatTooMuch = dogs
+  .filter((dog) => dog.curFood > dog.recommendFood)
+  .flatMap((dog) => dog.owners);
 
-console.log(dogSara);
-console.log(dogEat);
-
+const ownersEatTooLittle = dogs
+  .filter((dog) => dog.curFood < dog.recommendFood)
+  .flatMap((dog) => dog.owners);
+console.log(`${ownersEatTooMuch.join(" and ")}'s dogs eat too much`);
+console.log(`${ownersEatTooLittle.join(" and ")}'s dogs eat too little`);
 // const convertTitleCase = function (str) {
 //   const exceptions = ["a", "an", "on", "in", "with"];
 //   const str1 = str
