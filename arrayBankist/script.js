@@ -239,28 +239,45 @@ const dogs = [
   { weight: 32, curFood: 340, owners: ["Michael"] },
 ];
 
-dogs.forEach(function (arr) {
+const generateRecommend = dogs.forEach(function (arr) {
   const food = Math.trunc(arr.weight ** 0.75 * 28);
-  arr.recommendFood = food;
+  return (arr.recFood = food);
 });
 
-const dogSarah = dogs.find((dog) => dog.owners.includes("Sarah"));
-console.log(dogSarah);
+console.log(dogs.find((own) => own.owners.includes("Sarah")));
+console.log(`Sarah's dog is eating too much`);
+
+const ownersEatTooMuch = dogs.filter((dog) => dog.curFood > dog.recFood);
+const ownersEatTooLittle = dogs.filter((dog) => dog.curFood < dog.recFood);
+
 console.log(
-  `Sarah's dog is eating too ${
-    dogSarah.curFood > dogSarah.recommendFood ? `much` : `little`
-  }`
+  `${ownersEatTooMuch
+    .flatMap((own) => own.owners)
+    .join(" and ")}'s dogs eat too much.`
+);
+console.log(
+  `${ownersEatTooLittle
+    .flatMap((own) => own.owners)
+    .join(" and ")}'s dogs eat too little.`
 );
 
-const ownersEatTooMuch = dogs
-  .filter((dog) => dog.curFood > dog.recommendFood)
-  .flatMap((dog) => dog.owners);
+console.log(dogs.some((dog) => dog.curFood === dog.recFood));
 
-const ownersEatTooLittle = dogs
-  .filter((dog) => dog.curFood < dog.recommendFood)
-  .flatMap((dog) => dog.owners);
-console.log(`${ownersEatTooMuch.join(" and ")}'s dogs eat too much`);
-console.log(`${ownersEatTooLittle.join(" and ")}'s dogs eat too little`);
+console.log(
+  dogs.some(
+    (dog) => dog.curFood > dog.recFood * 0.9 && dog.curFood < dog.recFood * 1.1
+  )
+);
+
+const dogsEatOkay = dogs.filter(
+  (dog) => dog.curFood > dog.recFood * 0.9 && dog.curFood < dog.recFood * 1.1
+);
+console.log(dogsEatOkay);
+
+const dogSort = dogs.map((dog) => dog).sort((a, b) => b.recFood - a.recFood);
+console.log(dogSort);
+// movements.sort((a, b) => a - b); //best code for ascending
+// console.log(movements);
 // const convertTitleCase = function (str) {
 //   const exceptions = ["a", "an", "on", "in", "with"];
 //   const str1 = str
