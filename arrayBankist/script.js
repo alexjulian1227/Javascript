@@ -232,6 +232,71 @@ btnSort.addEventListener("click", function (e) {
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
+const dogs = [
+  { weight: 22, curFood: 250, owners: ["Alice", "Bob"] },
+  { weight: 8, curFood: 200, owners: ["Matilda"] },
+  { weight: 13, curFood: 275, owners: ["Sarah", "John"] },
+  { weight: 32, curFood: 340, owners: ["Michael"] },
+];
+
+//1
+dogs.forEach(function (arr) {
+  const food = Math.trunc(arr.weight ** 0.75 * 28);
+  return (arr.recommendFood = food);
+});
+
+const dogSara =
+  dogs[
+    dogs
+      .map((str) => str.owners)
+      .map((str) => str.includes("Sarah"))
+      .findIndex((str) => str === true)
+  ];
+
+// console.log(dogs[dogSara]);
+const dogEat = dogSara.weight;
+
+console.log(dogSara);
+console.log(dogEat);
+
+// const convertTitleCase = function (str) {
+//   const exceptions = ["a", "an", "on", "in", "with"];
+//   const str1 = str
+//     .toLowerCase()
+//     .split(" ")
+//     .map((word) =>
+//       exceptions.includes(word) ? word : word[0].toUpperCase() + word.slice(1)
+//     )
+//     .join(" ");
+
+// const str1 = str
+// .split(" ")
+//   .map((str) => str.slice(0, 1).toUpperCase() + str.slice(1).toLowerCase());
+
+//   console.log(str1);
+// };
+// convertTitleCase("this is a nice title on this with many options");
+// convertTitleCase("alEX jULian");
+// convertTitleCase("alex");
+
+//sum of dep sum of withdrawals
+// const { deposit, withdrawal } = accounts
+//   .flatMap((acc) => acc.movements)
+//   .reduce(
+//     (sums, cur) => {
+//       cur > 0 ? (sums.deposit += cur) : (sums.withdrawal += cur);
+//       return sums;
+//     },
+//     { deposit: 0, withdrawal: 0 }
+//   );
+
+// console.log(deposit, withdrawal);
+// const bankDeposit = accounts
+//   .map((mov) => mov.movements)
+//   .flat()
+//   .filter((mov) => mov >= 1000);
+// // console.log(`Total deposit for the bank: $${bankDeposit}`);
+// console.log(bankDeposit.length);
 //creating new array
 // const arr = [1, 2, 3, 4, 5, 6, 7];
 // //empty arrays + fill
@@ -248,13 +313,13 @@ btnSort.addEventListener("click", function (e) {
 // );
 // console.log(z);
 
-labelBalance.addEventListener("click", function () {
-  const movementsUi = Array.from(
-    document.querySelectorAll(".movements__value"),
-    (el) => Number(el.textContent.replace("$", ""))
-  );
-  console.log(movementsUi);
-});
+// labelBalance.addEventListener("click", function () {
+//   const movementsUi = Array.from(
+//     document.querySelectorAll(".movements__value"),
+//     (el) => Number(el.textContent.replace("$", ""))
+//   );
+//   console.log(movementsUi);
+// });
 //sort
 // const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // // console.log(movements);
