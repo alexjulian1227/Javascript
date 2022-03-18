@@ -40,11 +40,26 @@ btnScrollTo.addEventListener("click", function (e) {
   section1.scrollIntoView({ behavior: "smooth" });
 });
 
-//PAGE NAVIGATION
-document.querySelectorAll(".nav__link").forEach(function (el) {
-  el.addEventListener("click", function (e) {
-    console.log(`link`);
-  });
+// //PAGE NAVIGATION
+// document.querySelectorAll(".nav__link").forEach(function (el) {
+//   el.addEventListener("click", function (e) {
+//     e.preventDefault();
+//     console.log(`link`);
+//     const id = this.getAttribute("href");
+//     console.log(id);
+//     document.querySelector(id).scrollIntoView({ behavior: "smooth" });
+//   });
+// });
+
+//EVENT DELEGATION
+
+document.querySelector(".nav__links").addEventListener("click", function (e) {
+  console.log(e.target);
+  e.preventDefault();
+  if (e.target.classList.contains("nav__link")) {
+    const id = e.target.getAttribute("href");
+    document.querySelector(id).scrollIntoView({ behavior: "smooth" });
+  }
 });
 
 //TYPE OF EVENTS AND EVENT HANDLERS
