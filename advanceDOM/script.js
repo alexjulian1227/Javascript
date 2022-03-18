@@ -271,6 +271,15 @@ const slideFunction = function () {
   });
 };
 slideFunction();
+
+document.addEventListener("DOMContentLoaded", function (e) {
+  console.log(`HTML parsed and DOM tree built!`);
+});
+
+window.addEventListener("load", function (e) {
+  console.log("Page fully loaded", e);
+});
+
 //TYPE OF EVENTS AND EVENT HANDLERS
 // const h1 = document.querySelector("h1");
 
