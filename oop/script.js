@@ -280,29 +280,182 @@
 // tesla.brake();
 // tesla.accelerate();
 
-class Person {
-  constructor(fullName, birthYear) {
-    this.fullName = fullName;
-    this.birthYear = birthYear;
+// class Person {
+//   constructor(fullName, birthYear) {
+//     this.fullName = fullName;
+//     this.birthYear = birthYear;
+//   }
+
+//   calcAge() {
+//     console.log(`I'm ${2037 - this.birthYear} years old.`);
+//   }
+// }
+
+// class Student extends Person {
+//   constructor(fullName, birthYear, course) {
+//     super(fullName, birthYear);
+//     this.course = course;
+//   }
+
+//   calcAge() {
+//     console.log(`I'm ${2037 - this.birthYear} years old but I fell like 35 :D`);
+//   }
+// }
+
+// const martha = new Student("Martha", 2012, "Computer Science");
+
+// console.log(martha);
+// martha.calcAge();
+
+// const PersonProto = {
+//   calcAge() {
+//     console.log(2037 - this.birthYear);
+//   },
+
+//   init(firstName, birthYear) {
+//     this.firstName = firstName;
+//     this.birthYear = birthYear;
+//   },
+// };
+
+// const steven = Object.create(PersonProto);
+
+// const StudentProto = Object.create(PersonProto);
+// StudentProto.init = function (firstName, birthYear, course) {
+//   PersonProto.init.call(this, firstName, birthYear);
+//   this.course = course;
+// };
+// StudentProto.introduce = function () {
+//   console.log(
+//     `Hi! My name is ${this.firstName}, ${
+//       2037 - this.birthYear
+//     } years old taking ${this.course}`
+//   );
+// };
+// const jay = Object.create(StudentProto);
+// jay.init("Jay", 2010, "Computer Science");
+
+// console.log(jay);
+// jay.calcAge();
+// steven.init("Steven", 2000, "Tourism");
+// console.log(steven);
+// steven.calcAge();
+
+// jay.introduce();
+
+// class Account {
+//   //public fields
+//   locale = navigator.language;
+//   //private fields
+//   #movements = [];
+//   #pin;
+//   constructor(owner, curr, pin) {
+//     this.owner = owner;
+//     this.curr = curr;
+//     //protected property
+//     this.#pin = pin;
+//     // this._movements = [];
+//     // this.locale = navigator.locale;
+
+//     console.log(`Thank you for opening an account with us ${owner}`);
+//   }
+//   getMovements() {
+//     return this.#movements;
+//   }
+//   deposit(amount) {
+//     this.#movements.push(amount);
+//     return this;
+//   }
+
+//   withdraw(amount) {
+//     this.deposit(-amount);
+//     return this;
+//   }
+
+//   requestLoan(amount) {
+//     if (this.#approveLoan(amount)) {
+//       this.deposit(amount);
+//       console.log(`Loan approved!`);
+//       return this;
+//     }
+//   }
+
+//   //PRIVATE METHODS
+
+//   #approveLoan(amount) {
+//     return true;
+//   }
+// }
+
+// const acc1 = new Account("Jonas", "EUR", 1111);
+// acc1.deposit(500);
+// acc1.withdraw(400);
+// acc1.requestLoan(1000);
+// console.log(acc1);
+// console.log(acc1.getMovements());
+
+// acc1.deposit(300).deposit(500).withdraw(300).requestLoan(5000).withdraw(1000); //chaining methods
+// console.log(acc1.getMovements());
+
+class Car {
+  constructor(make, speed) {
+    this.make = make;
+    this.speed = speed;
   }
 
-  calcAge() {
-    console.log(`I'm ${2037 - this.birthYear} years old.`);
+  accelerate() {
+    this.speed += 10;
+    console.log(`${this.make} is going at ${this.speed}km/h`);
+  }
+
+  brake() {
+    this.speed -= 5;
+    console.log(`${this.make} is going at ${this.speed}km/h`);
+    return this;
+  }
+
+  get speedUS() {
+    return this.speed / 1.6;
+  }
+
+  set speedUS(speed) {
+    this.speed = speed * 1.6;
+  }
+}
+class EVCl extends Car {
+  #charge; //private field
+
+  constructor(make, speed, charge) {
+    super(make, speed);
+    this.#charge = charge;
+  }
+
+  chargeBattery(chargeTo) {
+    this.#charge = chargeTo;
+    return this;
+  }
+
+  accelerate() {
+    this.speed += 20;
+    this.#charge--;
+    console.log(
+      `${this.make} is going at ${this.speed} km/h, with a charge of ${
+        this.#charge
+      }`
+    );
+    return this;
   }
 }
 
-class Student extends Person {
-  constructor(fullName, birthYear, course) {
-    super(fullName, birthYear);
-    this.course = course;
-  }
+const rivian = new EVCl("Rivian", 120, 23);
 
-  calcAge() {
-    console.log(`I'm ${2037 - this.birthYear} years old but I fell like 35 :D`);
-  }
-}
-
-const martha = new Student("Martha", 2012, "Computer Science");
-
-console.log(martha);
-martha.calcAge();
+console.log(rivian);
+console.log(
+  rivian
+    .accelerate()
+    .brake()
+    .chargeBattery(90)
+    .accelerate()
+    .accelerate()
+    .brake()
+);
