@@ -1,17 +1,83 @@
 "use strict";
 
-//1
 const whereAmI = function (lat, long) {
-  console.log(lat, long);
-  //2
-  fetch(
-    `http://api.positionstack.com/v1/reverse?access_key=608627bb36bbd75d1154cdc65e1cdd53&query=${lat},${long}`
-  ).then((response) => response.json());
-}.then((data) => console.log(response[0]));
+  fetch(`https://geocode.xyz/${lat},${long}?geoit=json`)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(`You are in ${data.city}, ${data.country}`);
+      console.log(data?.error?.message);
+      getCountry(data.country);
+    });
+};
+
+const getCountry = function (country) {
+  fetch(`https://restcountries.com/v2/name/${country}`)
+    .then((response) => response.json())
+    .then((data) => renderGetCountry(data[0]))
+    .catch((err) =>
+      countriesContainer.insertAdjacentText(
+        `beforeend`,
+        `Something went wrong! ${err}`
+      )
+    );
+  countriesContainer.style.opacity = 1;
+};
+
+const renderGetCountry = function (data, className = "") {
+  const html = `
+          <article class="country ${className}">
+          <img class="country__img" src="${data.flag}" />
+          <div class="country__data">
+              <h3 class="country__name">${data.name}</h3>
+              <h4 class="country__region">${data.region}</h4>
+              <p class="country__row"><span>👫</span>${(
+                +data.population / 1000000
+              ).toFixed(1)} people</p>
+              <p class="country__row"><span>🗣️</span>${
+                data.languages[0].name
+              }</p>
+              <p class="country__row"><span>💰</span>${
+                data.currencies[0].name
+              }</p>
+          </div>
+          </article>
+  `;
+
+  countriesContainer.insertAdjacentHTML("beforeend", html);
+  countriesContainer.style.opacity = 1;
+};
 
 whereAmI(52.508, 13.381);
+// //1
+// const whereAmI = function (lat, long) {
+//   const a =
+//     //2
+//     fetch(
+//       `http://api.positionstack.com/v1/reverse?access_key=608627bb36bbd75d1154cdc65e1cdd53&query=${lat},${long}`
+//     ) //52.508,13.381
+//       .then((response) => response.json())
+//       .then((data) => {
+//         const a = data;
+//         console.log(a.data[0].country);
+//         return a.data[0].country;
+//       })
+//       .catch((err) => console.log(`Something went wrong.. ${err}`));
+// };
+
+// const getCountry = function (country) {
+//   fetch(`https://restcountries.com/v2/name/${country}`, "Country not found")
+//     .then((response) => response.json())
+//     .then((data) => {
+//       console.log(data);
+//     });
+// };
+// const data = whereAmI(52.508, 13.381);
+// console.log(data);
+// getCountry(whereAmI(52.508, 13.381));
+
+// whereAmI(52.508, 13.381);
 // const btn = document.querySelector(".btn-country");
-// const countriesContainer = document.querySelector(".countries");
+const countriesContainer = document.querySelector(".countries");
 
 // const renderError = function (msg) {
 //   countriesContainer.insertAdjacentText(`beforeend`, msg);
