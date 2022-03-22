@@ -4,10 +4,10 @@
 const whereAmI = function (lat, long) {
   console.log(lat, long);
   //2
-  fetch(`https://geocode.xyz/${lat},${long}?geoit=xml`).then((response) =>
-    response.json()
-  );
-};
+  fetch(
+    `http://api.positionstack.com/v1/reverse?access_key=608627bb36bbd75d1154cdc65e1cdd53&query=${lat},${long}`
+  ).then((response) => response.json());
+}.then((data) => console.log(response[0]));
 
 whereAmI(52.508, 13.381);
 // const btn = document.querySelector(".btn-country");
