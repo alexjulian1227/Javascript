@@ -1,35 +1,114 @@
 "use strict";
 
-const lotteryPromise = new Promise(function (resolve, reject) {
-  console.log(`Lottery draw is now ongoing....`);
+const imgContainer = document.querySelector(".images");
 
-  setTimeout(function () {
-    if (Math.random() <= 0.5) {
-      resolve(`You win`);
-    } else {
-      reject(new Error(`You lose`));
-    }
-  }, 3000);
+const createImage = function (imgPath) {
+  return new Promise(function (resolve, reject) {
+    const img = document.createElement("img");
+    img.src = imgPath;
+
+    img.addEventListener("load", function () {
+      imgContainer.append(img);
+      resolve(img);
+    });
+
+    img.addEventListener("error", function () {
+      reject(new Error("Image not found."));
+    });
+  });
+};
+createImage("img/img-1.jpg").then((img) => {
+  console.log(`Image 1 loaded.`);
 });
-
-lotteryPromise
-  .then((res) => console.log(res))
-  .catch((err) => console.error(err));
 
 const wait = function (seconds) {
   return new Promise((resolve) => setTimeout(resolve, seconds * 1000));
 };
 
-wait(5)
-  .then(() => {
-    console.log(`I waited for 5 seconds`);
-    return wait(1);
-  })
-  .then(() => console.log(`You know i waited for another 1 second.`));
+wait(2).then(() => {
+  imgContainer.style.display = "none";
+});
+// const lotteryPromise = new Promise(function (resolve, reject) {
+//   console.log(`Lottery draw is now ongoing....`);
 
-Promise.resolve(`abc`).then((res) => console.log(res));
-Promise.reject(new Error(`Problem`)).catch((res) => console.log(res));
+//   setTimeout(function () {
+//     if (Math.random() <= 0.5) {
+//       resolve(`You win`);
+//     } else {
+//       reject(new Error(`You lose`));
+//     }
+//   }, 3000);
+// });
+
+// lotteryPromise
+//   .then((res) => console.log(res))
+//   .catch((err) => console.error(err));
+
+// const wait = function (seconds) {
+//   return new Promise((resolve) => setTimeout(resolve, seconds * 1000));
+// };
+
+// wait(5)
+//   .then(() => {
+//     console.log(`I waited for 5 seconds`);
+//     return wait(1);
+//   })
+//   .then(() => console.log(`You know i waited for another 1 second.`));
+// const btn = document.querySelector(".btn-country");
 // const countriesContainer = document.querySelector(".countries");
+
+// const getPosition = function () {
+//   return new Promise(function (resolve, reject) {
+//     navigator.geolocation.getCurrentPosition(resolve, reject);
+//   });
+// };
+// // getPosition()
+// //   .then((pos) => console.log(pos))
+
+// const whereAmI = function () {
+//   getPosition().then((pos) => {
+//     const { latitude: lat, longitude: long } = pos.coords;
+//     return fetch(`https://geocode.xyz/${lat},${long}?geoit=json`)
+//       .then((response) => response.json())
+//       .then((data) => getCountry(data.country));
+//   });
+// };
+
+// const getCountry = function (country) {
+//   fetch(`https://restcountries.com/v2/name/${country}`)
+//     .then((response) => response.json())
+//     .then((data) => renderGetCountry(data[0]));
+// };
+
+// const renderGetCountry = function (data, className = "") {
+//   const html = `
+//           <article class="country ${className}">
+//           <img class="country__img" src="${data.flag}" />
+//           <div class="country__data">
+//               <h3 class="country__name">${data.name}</h3>
+//               <h4 class="country__region">${data.region}</h4>
+//               <p class="country__row"><span>👫</span>${(
+//                 +data.population / 1000000
+//               ).toFixed(1)} people</p>
+//               <p class="country__row"><span>🗣️</span>${
+//                 data.languages[0].name
+//               }</p>
+//               <p class="country__row"><span>💰</span>${
+//                 data.currencies[0].name
+//               }</p>
+//           </div>
+//           </article>
+//   `;
+
+//   countriesContainer.insertAdjacentHTML("beforeend", html);
+//   countriesContainer.style.opacity = 1;
+// };
+
+// btn.addEventListener("click", whereAmI);
+
+// Promise.resolve(`abc`).then((res) => console.log(res));
+// Promise.reject(new Error(`Problem`)).catch((res) => console.log(res));
+
 // //{"success": true, "deck_id": 57ibmr9r7og1 "remaining": 52, "shuffled": false}
 // const formatNum = function (num) {
 //   num = new Intl.NumberFormat().format(num);
