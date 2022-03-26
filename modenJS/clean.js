@@ -1,24 +1,27 @@
-var budget = [
-  { value: 250, description: 'Sold old TV 📺', user: 'jonas' },
-  { value: -45, description: 'Groceries 🥑', user: 'jonas' },
-  { value: 3500, description: 'Monthly salary 👩‍💻', user: 'jonas' },
-  { value: 300, description: 'Freelancing 👩‍💻', user: 'jonas' },
-  { value: -1100, description: 'New iPhone 📱', user: 'jonas' },
-  { value: -20, description: 'Candy 🍭', user: 'matilda' },
-  { value: -125, description: 'Toys 🚂', user: 'matilda' },
-  { value: -1800, description: 'New Laptop 💻', user: 'jonas' },
+"use strict";
+
+const budget = [
+  { value: 250, description: "Sold old TV 📺", user: "jonas" },
+  { value: -45, description: "Groceries 🥑", user: "jonas" },
+  { value: 3500, description: "Monthly salary 👩‍💻", user: "jonas" },
+  { value: 300, description: "Freelancing 👩‍💻", user: "jonas" },
+  { value: -1100, description: "New iPhone 📱", user: "jonas" },
+  { value: -20, description: "Candy 🍭", user: "matilda" },
+  { value: -125, description: "Toys 🚂", user: "matilda" },
+  { value: -1800, description: "New Laptop 💻", user: "jonas" },
 ];
 
-var limits = {
+const limits = Object.freeze({
+  //object freeze will convert obj/array and become immutable/ meaning you cannot add any new elements you can just edit existing elements like value from 300 = 1000
   jonas: 1500,
   matilda: 100,
-};
+});
 
-var add = function (value, description, user) {
-  if (!user) user = 'jonas';
+const add = function (value, description, user) {
+  if (!user) user = "jonas";
   user = user.toLowerCase();
 
-  var lim;
+  let lim;
   if (limits[user]) {
     lim = limits[user];
   } else {
@@ -29,14 +32,14 @@ var add = function (value, description, user) {
     budget.push({ value: -value, description: description, user: user });
   }
 };
-add(10, 'Pizza 🍕');
-add(100, 'Going to movies 🍿', 'Matilda');
-add(200, 'Stuff', 'Jay');
+add(10, "Pizza 🍕");
+add(100, "Going to movies 🍿", "Matilda");
+add(200, "Stuff", "Jay");
 console.log(budget);
 
-var check = function () {
-  for (var el of budget) {
-    var lim;
+const check = function () {
+  for (const el of budget) {
+    let lim;
     if (limits[el.user]) {
       lim = limits[el.user];
     } else {
@@ -44,7 +47,7 @@ var check = function () {
     }
 
     if (el.value < -lim) {
-      el.flag = 'limit';
+      el.flag = "limit";
     }
   }
 };
@@ -52,11 +55,11 @@ check();
 
 console.log(budget);
 
-var bigExpenses = function (limit) {
-  var output = '';
-  for (var el of budget) {
+const bigExpenses = function (limit) {
+  const output = "";
+  for (const el of budget) {
     if (el.value <= -limit) {
-      output += el.description.slice(-2) + ' / '; // Emojis are 2 chars
+      output += el.description.slice(-2) + " / "; // Emojis are 2 chars
     }
   }
   output = output.slice(0, -2); // Remove last '/ '

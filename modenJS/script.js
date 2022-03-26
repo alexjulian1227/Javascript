@@ -1,6 +1,6 @@
 // import cloneDeep from "./node_modules/lodash-es/cloneDeep.js";
 import cloneDeep from "lodash-es";
-
+import "core-js/stable";
 const state = {
   cart: [
     { product: "bread", quantity: 5 },
@@ -22,3 +22,5 @@ if (module.hot) {
   //updating inside the modules will the web on its current status or keep whats in doing unlike logging in to the page everytime
   module.hot.accept();
 }
+
+Promise.resolve("test").then((x) => console.log(x));
