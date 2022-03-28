@@ -6,6 +6,7 @@ class RecipeView {
   #data;
   #errorMessage = "We could not find that recipe. Please try another one.";
   #message = "";
+
   addHandlerRender(handler) {
     ["hashchange", "load"].forEach((ev) =>
       window.addEventListener(ev, handler)
@@ -58,6 +59,7 @@ class RecipeView {
 
   render(data) {
     this.#data = data;
+
     const markup = this.#generateMarkup();
     this.#clear();
     this.#parentElement.insertAdjacentHTML("afterbegin", markup);
