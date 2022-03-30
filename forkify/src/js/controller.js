@@ -2,6 +2,7 @@ import * as model from "./model.js";
 import recipeView from "./views/recipeView.js";
 import searchView from "./views/searchView.js";
 import resultsView from "./views/resultsView.js";
+import paginationView from "./views/paginationView.js";
 
 import "core-js/stable"; //poliffy everything else
 import "regenerator-runtime/runtime"; //polyfilling async await to work for old browser
@@ -33,16 +34,28 @@ const controlSearchResults = async function () {
     if (!query) return;
     await model.loadSearchResults(query);
     //render data to results view
-    resultsView.render(model.state.search.results);
+    resultsView.render(model.getSearchResultsPage());
+
+    //render pagination buttons
+    paginationView.render(model.state.search);
   } catch (err) {
     console.log(err);
   }
+};
+
+const controlPagination = function (goToPage) {
+  //render new results
+  resultsView.render(model.getSearchResultsPage(goToPage));
+
+  //render new pagination buttons
+  paginationView.render(model.state.search);
 };
 
 const init = function () {
   //PUBLISHER SUBSCIBER PATTER
   recipeView.addHandlerRender(controlRecipes);
   searchView.addHandlerSearch(controlSearchResults);
+  paginationView.addHandlerClick(controlPagination);
 };
 
 init();
