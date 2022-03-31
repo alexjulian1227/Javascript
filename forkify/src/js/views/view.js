@@ -47,13 +47,15 @@ export default class View {
     this._parentElement.insertAdjacentHTML("afterbegin", markup);
   }
 
-  render(data) {
+  render(data, render = true) {
     if (!data || (Array.isArray(data) && data.length === 0))
       return this.renderError(); //checks if there's no data or there is data and its an array with empty
 
     this._data = data;
 
     const markup = this._generateMarkup();
+
+    if (!render) return markup;
     this._clear();
     this._parentElement.insertAdjacentHTML("afterbegin", markup);
   }
@@ -63,9 +65,10 @@ export default class View {
   }
 
   update(data) {
+    //dom updating algorithm
     //create a new markup and will not render it for faster browser
-    if (!data || (Array.isArray(data) && data.length === 0))
-      return this.renderError();
+    // if (!data || (Array.isArray(data) && data.length === 0))
+    //   return this.renderError();
 
     this._data = data;
 
@@ -77,19 +80,19 @@ export default class View {
     const currentElement = Array.from(
       this._parentElement.querySelectorAll("*")
     );
-    console.log(currentElement);
-    console.log(newElement);
 
     newElement.forEach((el, i) => {
       const curEl = currentElement[i];
-      console.log(currentElement, el.isEqualNode(curEl));
 
-      if (
-        !el.isEqualNode(currentElement) &&
-        newElement.firstChild.nodeValue.trim() !== ""
-      ) {
+      //updates change text
+      if (!el.isEqualNode(curEl) && el.firstChild?.nodeValue.trim() !== "") {
         curEl.textContent = el.textContent;
       }
+      //update change attributes
+      if (!el.isEqualNode(curEl))
+        Array.from(el.attributes).forEach((attr) =>
+          curEl.setAttribute(attr.name, attr.value)
+        );
     });
   }
 }
