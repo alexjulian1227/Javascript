@@ -9,7 +9,7 @@ import addRecipeView from "./views/addRecipeView.js";
 
 import "core-js/stable"; //poliffy everything else
 import "regenerator-runtime/runtime"; //polyfilling async await to work for old browser
-
+import { async } from "regenerator-runtime";
 if (module.hot) {
   //from parcel that will reload the page
   module.hot.accept();
